@@ -21,7 +21,7 @@ public class MainController {
     PersonService personService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(Model model){
+    public String index(Model model) {
 
 
         model.addAttribute("persons", personService.personList());
@@ -29,7 +29,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/add-person-page", method = RequestMethod.GET)
-            public String addPersonPage(){
+    public String addPersonPage() {
         return "add-person-page";
     }
 
@@ -38,39 +38,31 @@ public class MainController {
                             @RequestParam int age,
                             @RequestParam int height,
                             @RequestParam int weight,
-                            Model model){
+                            Model model) {
         personService.addPerson(new Person(name, age, height, weight));
         model.addAttribute("persons", personService.personList());
         return "index";
     }
 
     @RequestMapping(value = "/delete-person", method = RequestMethod.POST)
-    public String deletePerson(@RequestParam long[]ids, Model model){
+    public String deletePerson(@RequestParam long[] ids, Model model) {
         personService.deletePerson(ids);
         model.addAttribute("persons", personService.personList());
         return "index";
     }
 
-    @RequestMapping(value = "/update-person-page/{id}", method = RequestMethod.GET)
-    public String updatePersonPage(@PathVariable long id, Model model){
+    @RequestMapping(value = "/update-person-page", method = RequestMethod.GET)
+    public String updatePersonPage(@RequestParam long id, Model model) {
 
         Person person = personService.findPerson(id);
         model.addAttribute("person", person);
         return "update-person-page";
     }
 
-    @RequestMapping(value = "/update-person/{id}", method = RequestMethod.POST)
-    public String updatePerson(@PathVariable long id,
-                            @RequestParam String name,
-                            @RequestParam int age,
-                            @RequestParam int height,
-                            @RequestParam int weight,
-                            Model model){
-        Person person = personService.findPerson(id);
-        person.setName(name);
-        person.setAge(age);
-        person.setHeight(height);
-        person.setWeight(weight);
+    @RequestMapping(value = "/update-person", method = RequestMethod.POST)
+    public String updatePerson(Person person,
+                               Model model) {
+
         personService.updatePerson(person);
         model.addAttribute("persons", personService.personList());
         return "index";
