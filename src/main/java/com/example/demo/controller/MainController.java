@@ -51,8 +51,8 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping(value = "/update-person-page", method = RequestMethod.GET)
-    public String updatePersonPage(@RequestParam long id, Model model) {
+    @RequestMapping(value = "/update-person-page/{id}", method = RequestMethod.GET)
+    public String updatePersonPage(@PathVariable long id, Model model) {
 
         Person person = personService.findPerson(id);
         model.addAttribute("person", person);

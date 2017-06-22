@@ -27,7 +27,7 @@
                 <td th:text="${person.age}"></td>
                 <td th:text="${person.height}"></td>
                 <td th:text="${person.weight}"></td>
-                <td><a th:href="@{/update-person-page/(id=${person.id})}" class="btn btn-primary" role="button">Update
+                <td><a th:href="@{/update-person-page/{id}(id=${person.id})}" class="btn btn-primary" role="button">Update
                     Person</a></td>
             </tr>
         </form>

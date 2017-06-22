@@ -9,7 +9,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<div class="container">
 <form action="/update-person" method="post" th:object="${person}">
     <input type="hidden" th:field="*{id}"/>
     <br/>
@@ -23,5 +23,6 @@
     <br/>
     <input type="submit" class="btn btn-success" role="button" value="update Person"/>
 </form>
+</div>
 </body>
 </html>
